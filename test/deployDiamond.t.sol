@@ -93,51 +93,8 @@ contract DiamondDeployer is Test, DiamondUtils, IDiamondCut {
         assertEq(facetAddresses.length, 6);
     }
 
-    // function testMint() public {
-    //     string[] memory inputs = new string[](3);
-    //     inputs[0] = "node";
-    //     inputs[1] = "./merkle/generateMerkleProof.js";
-    //     inputs[2] = vm.toString(user1);
-    //     bytes memory result = vm.ffi(inputs);
-    //     bytes32[] memory proof = abi.decode(result, (bytes32[]));
 
-    //     vm.prank(user1);
-    //     try MerkleFacet(address(diamond)).claim(proof) {
-    //         assertEq(ERC721Facet(address(diamond)).balanceOf(user1), 1);
-    //     } catch Error(string memory reason) {
-    //         vm.expectRevert(bytes(reason));
-    //         MerkleFacet(address(diamond)).claim(proof);
-    //     } catch {
-    //         vm.expectRevert();
-    //         MerkleFacet(address(diamond)).claim(proof);
-    //     }
-    // }
 
-    // function testPresale() public {
-    //     vm.deal(user2, 1 ether);
-    //     vm.prank(user2);
-    //     uint256 minPurchaseAmount = 1 ether;
-    //     PresaleFacet(address(diamond)).buyPresale{value: minPurchaseAmount}(3);
-    //     assertEq(ERC721Facet(address(diamond)).balanceOf(user2), 3);
-    // }
-
-    // function testTransfer() public {
-    //     // First, mint a token to user1
-    //     string[] memory inputs = new string[](3);
-    //     inputs[0] = "node";
-    //     inputs[1] = "./merkle/generateMerkleProof.js";
-    //     inputs[2] = vm.toString(user1);
-    //     bytes memory result = vm.ffi(inputs);
-    //     bytes32[] memory proof = abi.decode(result, (bytes32[]));
-
-    //     vm.prank(user1);
-    //     MerkleFacet(address(diamond)).claim(proof);
-
-    //     // Now transfer the token from user1 to user2
-    //     vm.prank(user1);
-    //     ERC721Facet(address(diamond)).transferFrom(user1, user2, 0);
-    //     assertEq(ERC721Facet(address(diamond)).ownerOf(0), user2);
-    // }
 
     function testFailInvalidPresaleAmount() public {
         vm.deal(user2, 1 ether);
@@ -165,15 +122,6 @@ contract DiamondDeployer is Test, DiamondUtils, IDiamondCut {
         ERC721Facet(address(diamond)).transferFrom(user1, user2, 0);
     }
 
-    // function testFailInvalidMerkleProof() public {
-    //     // Create an invalid proof
-    //     bytes32[] memory invalidProof = new bytes32[](1);
-    //     invalidProof[0] = bytes32(0);
-
-    //     vm.prank(user1);
-    //     vm.expectRevert("Invalid merkle proof");
-    //     MerkleFacet(address(diamond)).claim(invalidProof);
-    // }
 
     function diamondCut(
         FacetCut[] calldata _diamondCut,
